@@ -43,7 +43,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         };
         addWindowListener(exitListener);
-        //
+        // End of Adapted Code
         
     }
     
