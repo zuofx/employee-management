@@ -734,6 +734,7 @@ public class AddJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         deductField.setEditable(true);
         deductField.setFocusable(true);
+        deductField.setText("0.00");
     }//GEN-LAST:event_useCustomActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed

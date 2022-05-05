@@ -70,13 +70,12 @@ public class FileManager {
     
     public Hashtable loadToHash(Hashtable theHT) { // Loads all variables in the text file to the hashtable
         String line;
-        try { // Open new text file
+        try { // Open new Scanner type text file
             scanFile = new Scanner(new File("employee-entries.txt"));
             } catch (FileNotFoundException e) {
                     System.out.println("File not found.");
-                    e.printStackTrace();
             }
-        // TODO - ADD CHECKS TO MAKE SURE VALID INTEGERS
+        // Assumed uncorrupted textfile
         while (scanFile.hasNextLine()) { // If the text file is not empty (has a next line)
             line = scanFile.nextLine();
             String[] lineArray = line.split(","); // Split the line by the comma
