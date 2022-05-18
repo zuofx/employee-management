@@ -288,7 +288,117 @@ public class searchJFrame extends javax.swing.JFrame {
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
         // TODO add your handling code here:
-        searchButtonActionPerformed(evt);
+        String empNumString = searchField.getText();
+        int empNum = 0;
+        if (empNumString == empNumString) {
+            String check = null;
+            if (empNumString.length() > 6) {
+                System.out.println("Employee Number is too long.");
+                return;
+                    
+            }
+            if (empNumString.length() < 6) {
+                    System.out.println("Employee Number is too short.");
+                    return;
+                    
+            }
+            
+            for (int e = 0; e < empNumString.length(); e++) {
+
+                if (Character.isLetter(empNumString.charAt(e)) == true) {
+                    System.out.println("Not a valid integer.");
+                    check = "flag";
+                    return;
+                }
+            }
+
+            if (check !=  "flag") {
+                empNum = Integer.parseInt(empNumString);
+            }
+        }
+        EmployeeInfo theEmp = theHT.retrieve(empNum);
+        
+        if (theEmp == null) {
+            System.out.println("Could not find a matching employee ID.");
+            
+        }else {
+            
+            int htSize = theHT.getNumInHashtable();
+            int empCounter = 0;
+            
+            if (theEmp instanceof FTE) {
+                FTE theFTE = (FTE) theEmp;
+                model = new DefaultTableModel(new Object[] {"Status",
+                                                            "Emp. ID",
+                                                            "First Name",
+                                                            "Last Name",
+                                                            "Gender",
+                                                            "Location",
+                                                            "Deduction Rate",
+                                                            "Yearly Salary",}, 1);
+                searchTable.setModel(model);
+                searchTable.setAutoCreateColumnsFromModel(true);
+                model.setValueAt("Full Time", empCounter, 0);
+                model.setValueAt(theEmp.getEmpNum(), empCounter, 1);
+                model.setValueAt(theEmp.getFirstName(), empCounter, 2);
+                model.setValueAt(theEmp.getLastName(), empCounter, 3);
+                //model.setValueAt(theEmp.gender, empCounter, 4);
+                model.setValueAt(theEmp.workLoc, empCounter, 5);
+                model.setValueAt(theEmp.deductRate, empCounter, 6);
+                model.setValueAt(theFTE.yearlySalary, empCounter, 7);
+                if (theEmp.gender == 0) {
+                    model.setValueAt("Male", empCounter, 4);
+                }
+                if (theEmp.gender == 1) {
+                    model.setValueAt("Female", empCounter, 4);
+                }
+                if (theEmp.gender == 2) {
+                    model.setValueAt("Other", empCounter, 4);
+                }
+                double netAnnual = theFTE.calcAnnualSalary();
+                String stringNetAnnual = Double.toString(netAnnual);
+                netAnnualField.setText(stringNetAnnual);
+            }
+            
+            if (theEmp instanceof PTE) {
+                model = new DefaultTableModel(new Object[] {"Status",
+                                                            "Emp. ID",
+                                                            "First Name",
+                                                            "Last Name",
+                                                            "Gender",
+                                                            "Location",
+                                                            "Deduction Rate",
+                                                            "Hourly Wage",
+                                                            "Hours per week",
+                                                            "Weeks per year"}, 1);
+                searchTable.setModel(model);
+                searchTable.setAutoCreateColumnsFromModel(true);
+                PTE thePTE = (PTE) theEmp;
+                model.setValueAt("Part Time", empCounter, 0);
+                model.setValueAt(theEmp.getEmpNum(), empCounter, 1);
+                model.setValueAt(theEmp.getFirstName(), empCounter, 2);
+                model.setValueAt(theEmp.getLastName(), empCounter, 3);
+                //model.setValueAt(theEmp.gender, empCounter, 4);
+                model.setValueAt(theEmp.workLoc, empCounter, 5);
+                model.setValueAt(theEmp.deductRate, empCounter, 6);
+                model.setValueAt(thePTE.hourlyWage, empCounter, 7);
+                model.setValueAt(thePTE.hoursPerWeek, empCounter, 8);
+                model.setValueAt(thePTE.weeksPerYear, empCounter, 9);
+                if (theEmp.gender == 0) {
+                    model.setValueAt("Male", empCounter, 4);
+                }
+                if (theEmp.gender == 1) {
+                    model.setValueAt("Female", empCounter, 4);
+                }
+                if (theEmp.gender == 2) {
+                    model.setValueAt("Other", empCounter, 4);
+                }
+                double netAnnual = thePTE.calcAnnualSalary();
+                String stringNetAnnual = Double.toString(netAnnual);
+                netAnnualField.setText(stringNetAnnual);
+            }
+            
+        }
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -343,15 +453,22 @@ public class searchJFrame extends javax.swing.JFrame {
         String empNumString = searchField.getText();
         int empNum = 0;
         String check = null;
+        
+        
+        
         if (empNumString.length() > 6) {
             System.out.println("Employee Number is too long.");
             return;
+
         }
         if (empNumString.length() < 6) {
                 System.out.println("Employee Number is too short.");
                 return;
+
         }
+
         for (int e = 0; e < empNumString.length(); e++) {
+
             if (Character.isLetter(empNumString.charAt(e)) == true) {
                 System.out.println("Not a valid integer.");
                 check = "flag";

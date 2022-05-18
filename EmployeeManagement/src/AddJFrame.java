@@ -569,7 +569,6 @@ public class AddJFrame extends javax.swing.JFrame {
             if (useDefault.isSelected() == true) { // If Use default deduction rate selected, add new FTE with deduct rate 0.21
                 FTE theFTE = new FTE(empNum, firstName, lastName, gender, workLoc, 0.21, salaryAnnual);
                 addHT.add(theFTE);
-                tFiles.writeNew(theFTE); // rewrite to text file
                 System.out.println("\nAdded new Full-Time employee: " + theFTE.employeeNum);
             }
             if (useCustom.isSelected() == true) { // If use custom deduction rate is selected, add new FTE with user-entered deduct rate
@@ -577,7 +576,6 @@ public class AddJFrame extends javax.swing.JFrame {
                 Double deductDouble = Double.parseDouble(deduct);
                 FTE theFTE = new FTE(empNum, firstName, lastName, gender, workLoc, deductDouble, salaryAnnual);
                 addHT.add(theFTE);
-                tFiles.writeNew(theFTE); // write to text file
                 System.out.println("\nAdded new Full-Time employee: " + theFTE.employeeNum);
             }
 
@@ -676,7 +674,6 @@ public class AddJFrame extends javax.swing.JFrame {
             if (useDefault.isSelected() == true) { // Add new PTE with default deduction rate
                 PTE thePTE = new PTE(empNum, firstName, lastName, gender, workLoc, 0.21, wageHours, weeksVal, yearsVal); 
                 addHT.add(thePTE);
-                tFiles.writeNew(thePTE);
                 System.out.println("\nAdded new Part-Time employee: " + thePTE.employeeNum);
             }
             if (useCustom.isSelected() == true) { // Add new PTE with custom deduction rate.
@@ -684,7 +681,6 @@ public class AddJFrame extends javax.swing.JFrame {
                 Double deductDouble = Double.parseDouble(deduct);
                 PTE thePTE = new PTE(empNum, firstName, lastName, gender, workLoc, deductDouble, wageHours, weeksVal, yearsVal);
                 addHT.add(thePTE);
-                tFiles.writeNew(thePTE);
                 System.out.println("\nAdded new Part-Time employee: " + thePTE.employeeNum);
             }
         }// end of partime selected
@@ -734,7 +730,6 @@ public class AddJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         deductField.setEditable(true);
         deductField.setFocusable(true);
-        deductField.setText("0.00");
     }//GEN-LAST:event_useCustomActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed

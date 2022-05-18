@@ -29,7 +29,7 @@ public class MainJFrame extends javax.swing.JFrame {
         tFiles = new FileManager();
         tFiles.loadToHash(theHT);
         
-        // Adapted 'Close' code by mKorbel; https://stackoverflow.com/a/6084220
+        // Adapted 'Close' code by mKorbel https://stackoverflow.com/a/6084220
         WindowListener exitListener = new WindowAdapter() {
         @Override
         public void windowClosing(WindowEvent e) {
@@ -43,7 +43,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         };
         addWindowListener(exitListener);
-        // End of Adapted Code
+        //
         
     }
     
@@ -213,8 +213,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void reloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reloadButtonActionPerformed
         // TODO add your handling code here:
+        
         tFiles.loadToHash(theHT);
         System.out.println("\nReloaded Employee Data.");
+        
     }//GEN-LAST:event_reloadButtonActionPerformed
 
     private void addExamplesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExamplesButtonActionPerformed

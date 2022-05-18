@@ -70,27 +70,62 @@ public class FileManager {
     
     public Hashtable loadToHash(Hashtable theHT) { // Loads all variables in the text file to the hashtable
         String line;
-        try { // Open new Scanner type text file
+        try { // Open new text file
             scanFile = new Scanner(new File("employee-entries.txt"));
             } catch (FileNotFoundException e) {
                     System.out.println("File not found.");
+                    e.printStackTrace();
             }
-        // Assumed uncorrupted textfile
+        // TODO - ADD CHECKS TO MAKE SURE VALID INTEGERS
+        boolean errors = false;
         while (scanFile.hasNextLine()) { // If the text file is not empty (has a next line)
+            errors = false;
             line = scanFile.nextLine();
             String[] lineArray = line.split(","); // Split the line by the comma
             String checkVar = lineArray[0];
+            int empNum = 0;
+            int gender = 0;
+            double deductRate = 0;
+            
+            try {
+                empNum = Integer.parseInt(lineArray[1]);
+            }catch (Exception e) {
+                errors = true;
+                System.out.println(e);
+                System.out.println("Error parsing EMPLOYEE NUMBER. Check data file.");
+            }
+            
+            try {
+                gender = Integer.parseInt(lineArray[4]);
+            }catch (Exception e) {
+                errors = true;
+                System.out.println(e);
+                System.out.println("Error parsing GENDER. Check data file.");
+            }
+            
+            try {
+                deductRate = Double.parseDouble(lineArray[6]); // 
+            }catch (Exception e) {
+                errors = true;
+                System.out.println(e);
+                System.out.println("Error parsing DEDUCTION RATE. Check data file.");
+            }
+            
             if (checkVar.equals("FTE")) { // If it has FTE indentifier:
-                int empNum = Integer.parseInt(lineArray[1]); // Parse all variables to desired type (int or double)
-                int gender = Integer.parseInt(lineArray[4]); //
-                double deductRate = Double.parseDouble(lineArray[6]); // 
-                double yearlySalary = Double.parseDouble(lineArray[7]);//
+                double yearlySalary = 0;//
                 
+                try {
+                    yearlySalary = Double.parseDouble(lineArray[7]);//
+                }catch (Exception e) {
+                    errors = true;
+                    System.out.println(e);
+                    System.out.println("Error parsing YEARLY SALARY. Check data file.");
+                }
                 
                 FTE theFTE = new FTE(empNum, lineArray[2], lineArray[3], gender, lineArray[5], deductRate, yearlySalary);
                 
                 boolean hashCheck = theHT.checkDuplicateNum(empNum);
-                if (hashCheck == false) {
+                if ((hashCheck == false) && (errors == false)) {
                     theHT.add(theFTE); // Add the employee FTE
                 }
                 if (hashCheck == true) {
@@ -99,17 +134,38 @@ public class FileManager {
             }
             
             if (checkVar.equals("PTE")) {
-                int empNum = Integer.parseInt(lineArray[1]); // Parse all variables to desired type (int or double)
-                int gender = Integer.parseInt(lineArray[4]);//
-                double deductRate = Double.parseDouble(lineArray[6]); //
-                double hourlyWage = Double.parseDouble(lineArray[7]); // 
-                double hoursPerWeek = Double.parseDouble(lineArray[8]); // 
-                double weeksPerYear = Double.parseDouble(lineArray[9]); //
+                double hourlyWage = 0; // 
+                double hoursPerWeek = 0; // 
+                double weeksPerYear = 0; //
+                
+                try {
+                    hourlyWage = Double.parseDouble(lineArray[7]); // 
+                }catch (Exception e) {
+                    errors = true;
+                    System.out.println(e);
+                    System.out.println("Error parsing HOURLY WAGE. Check data file.");
+                }
+                
+                try {
+                    hoursPerWeek = Double.parseDouble(lineArray[8]); // 
+                }catch (Exception e) {
+                    errors = true;
+                    System.out.println(e);
+                    System.out.println("Error parsing HOURS PER WEEK. Check data file.");
+                }
+                
+                try {
+                    weeksPerYear = Double.parseDouble(lineArray[9]); //
+                }catch (Exception e) {
+                    errors = true;
+                    System.out.println(e);
+                    System.out.println("Error parsing WEEKS PER YEAR. Check data file.");
+                }
                 
                 PTE thePTE = new PTE(empNum, lineArray[2], lineArray[3], gender, lineArray[5], deductRate, hourlyWage, hoursPerWeek, weeksPerYear);
                 
                 boolean hashCheck = theHT.checkDuplicateNum(empNum);
-                if (hashCheck == false) {
+                if ((hashCheck == false) && (errors == false)) {
                     theHT.add(thePTE); // Add the employee PTE
                 }
                 if (hashCheck == true) {
@@ -132,7 +188,8 @@ public class FileManager {
     }//end of save
     
     public void rewrite(Hashtable rewriteHash) {
-        String hashLine;
+        String hashLine = null;
+        
         try {
             rewriterFile = new FileWriter("employee-entries.txt", false); 
             // Opens a new text file called rewriter file with the "false" flag which means anything appended to it
@@ -153,9 +210,10 @@ public class FileManager {
             int hashSize = rewriteHash.buckets[a].size();
             for (int b = 0; b < hashSize;b++) { // 'b' represents where in lists
                 EmployeeInfo grabbed = rewriteHash.buckets[a].get(b);
-                    //
+                FTE theFTE = null;
+                PTE thePTE = null;//
                 if (grabbed instanceof FTE) {
-                    FTE theFTE = (FTE) grabbed;
+                    theFTE = (FTE) grabbed;
                     hashLine = ("FTE," + theFTE.employeeNum + "," 
                             + theFTE.firstName + "," 
                             + theFTE.lastName + "," 
@@ -163,16 +221,10 @@ public class FileManager {
                             + theFTE.workLoc + ","
                             + theFTE.deductRate + ","
                             + theFTE.yearlySalary + "\n");
-                    try {
-                        textFile.append(hashLine);
-                    } catch (IOException errors) {
-                        System.out.println("Error while writing to file.");
-                    }
-                    
-                    
                 }
+                
                 if (grabbed instanceof PTE) {
-                    PTE thePTE = (PTE) grabbed;
+                    thePTE = (PTE) grabbed;
                     hashLine = ("PTE," + thePTE.employeeNum + "," 
                                 + thePTE.firstName + "," 
                                 + thePTE.lastName + "," 
@@ -182,14 +234,35 @@ public class FileManager {
                                 + thePTE.hourlyWage + ","
                                 + thePTE.hoursPerWeek + ","
                                 + thePTE.weeksPerYear + "\n");
-                    
-                    
+                }
+                try {
+                    boolean errors = false;
+                    Scanner checkFile = null;
                     try {
+                        checkFile = new Scanner(new File("employee-entries.txt"));
+                    }catch (FileNotFoundException eb) {
+                        System.out.println(eb);
+                        }
+                    
+                    while (checkFile.hasNextLine()) {
+                        String dupLine = checkFile.nextLine();
+                        String[] dupArray = dupLine.split(",");
+                        String[] hashArray = hashLine.split(",");
+                        
+                        if (dupArray[1].equals(hashArray[1])) {
+                            errors = true;
+                            System.out.println("Duplicate, not appending.");
+                        }
+                        
+                    }
+                    
+                    if (errors == false) {
+                        System.out.println("Saved Employee NO. " + grabbed.firstName);
                         textFile.append(hashLine);
+                    }
                     } catch (IOException errors) {
                         System.out.println("Error while writing to file.");
                     }
-                }
             }
         }
     }
