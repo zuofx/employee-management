@@ -27,7 +27,7 @@ public class FileManager {
             e.printStackTrace();
         }
 	
-	}
+    }
     
     public void writeNew(EmployeeInfo newEmployee) {
         try { // open new text folder, will open an existing one if already exits, or create a new one.
@@ -173,8 +173,6 @@ public class FileManager {
                 }
             }
         }
-     
-    
     return theHT;
     }
     
@@ -257,7 +255,7 @@ public class FileManager {
                     }
                     
                     if (errors == false) {
-                        System.out.println("Saved Employee NO. " + grabbed.firstName);
+                        System.out.println("Saved Employee NO. " + grabbed.employeeNum);
                         textFile.append(hashLine);
                     }
                     } catch (IOException errors) {

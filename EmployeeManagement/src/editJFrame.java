@@ -590,6 +590,10 @@ public class editJFrame extends javax.swing.JFrame {
         if (otherGender.isSelected() == true) {
             gender = 2;
         }
+        if ((maleGender.isSelected() == false) && (femaleGender.isSelected() == false) && (otherGender.isSelected() == false)) {
+            System.out.println("Error: No gender selected! ");
+            return;
+        }
 
         // </editor-fold>
         

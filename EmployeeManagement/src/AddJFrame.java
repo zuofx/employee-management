@@ -533,6 +533,10 @@ public class AddJFrame extends javax.swing.JFrame {
         if (otherGender.isSelected() == true) {
             gender = 2;
         }
+        if ((maleGender.isSelected() == false) && (femaleGender.isSelected() == false) && (otherGender.isSelected() == false)) {
+            System.out.println("Error: No gender selected! ");
+            return;
+        }
         //
         // </editor-fold>
         
@@ -599,7 +603,7 @@ public class AddJFrame extends javax.swing.JFrame {
 
                 }
 
-                for (int b = 0; b < hoursWage.length(); b++) { // Check for letters in hourly wage inpits
+                for (int b = 0; b < hoursWage.length(); b++) { // Check for letters in hourly wage inputs
 
                     if (Character.isLetter(hoursWage.charAt(b)) == true) { // Letter check
                         System.out.println("Not a valid number.");
