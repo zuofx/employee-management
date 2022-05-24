@@ -76,11 +76,11 @@ public class FileManager {
                 System.out.println("File not found.");
                 e.printStackTrace();
             }
-        // TODO - ADD CHECKS TO MAKE SURE VALID INTEGERS
+        
         boolean errors = false;
         while (scanFile.hasNextLine()) { // If the text file is not empty (has a next line)
             errors = false;
-            line = scanFile.nextLine();
+            line = scanFile.nextLine();          
             String[] lineArray = line.split(","); // Split the line by the comma
             String checkVar = lineArray[0];
             int empNum = 0;
@@ -176,7 +176,7 @@ public class FileManager {
     return theHT;
     }
     
-    public void save (Hashtable saveHT) { // unfinished
+    public void save (Hashtable saveHT) {
         rewrite(saveHT);
     }//end of save
     
