@@ -58,8 +58,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addNewButton = new javax.swing.JButton();
+        displayButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         editFButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -75,17 +75,17 @@ public class MainJFrame extends javax.swing.JFrame {
         jTextPane1.setFocusable(false);
         jScrollPane1.setViewportView(jTextPane1);
 
-        jButton1.setText("New Employee");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addNewButton.setText("New Employee");
+        addNewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addNewButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Display Employees");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        displayButton.setText("Display Employees");
+        displayButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                displayButtonActionPerformed(evt);
             }
         });
 
@@ -135,11 +135,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addComponent(addNewButton)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(editFButton)
                             .addComponent(jLabel1)
-                            .addComponent(jButton2))
+                            .addComponent(displayButton))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(addExamplesButton)
@@ -158,9 +158,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(addNewButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(displayButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,15 +178,15 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewButtonActionPerformed
         // OPENS ADD J FRAME
         AddJFrame theAddJFrame = new AddJFrame();
         theAddJFrame.setVisible(true);
         theAddJFrame.setHT(theHT);
         theAddJFrame.setTF(tFiles);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addNewButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void displayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayButtonActionPerformed
         // OPENS DISPLAY J FRAME
         displayJFrame displayJF = new displayJFrame();
         displayJF.setVisible(true);
@@ -194,7 +194,7 @@ public class MainJFrame extends javax.swing.JFrame {
         displayJF.setTF(tFiles);
         displayJF.setTitle("Display Employees");
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_displayButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // CLOSES EVERYTHING
@@ -300,10 +300,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addExamplesButton;
+    private javax.swing.JButton addNewButton;
+    private javax.swing.JButton displayButton;
     private javax.swing.JButton editFButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
