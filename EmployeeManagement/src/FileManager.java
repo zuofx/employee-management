@@ -16,7 +16,7 @@ public class FileManager {
     private FileWriter textFile;
     private FileWriter rewriterFile;
     public Scanner scanFile;
-    public Scanner indexFile;
+    public Scanner checkFile;
     public Scanner rewriteFile;
     
     public FileManager() {
@@ -73,8 +73,8 @@ public class FileManager {
         try { // Open new text file
             scanFile = new Scanner(new File("employee-entries.txt"));
             } catch (FileNotFoundException e) {
-                    System.out.println("File not found.");
-                    e.printStackTrace();
+                System.out.println("File not found.");
+                e.printStackTrace();
             }
         // TODO - ADD CHECKS TO MAKE SURE VALID INTEGERS
         boolean errors = false;
@@ -178,11 +178,6 @@ public class FileManager {
     
     public void save (Hashtable saveHT) { // unfinished
         rewrite(saveHT);
-        try {
-        textFile.close();
-        }catch (IOException errors) {
-            System.out.println("Error while saving the file.");
-        }
     }//end of save
     
     public void rewrite(Hashtable rewriteHash) {
@@ -200,13 +195,15 @@ public class FileManager {
         try {
             rewriterFile.append(""); // Add nothing to rewriter file, which will 'reset' the file. 
             rewriterFile.close(); // Close rewriter file.
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         // Rewrite portion
         for (int a = 0; a < rewriteHash.buckets.length; a++) { // 'a' represents where in arraylist
             int hashSize = rewriteHash.buckets[a].size();
             for (int b = 0; b < hashSize;b++) { // 'b' represents where in lists
+                
                 EmployeeInfo grabbed = rewriteHash.buckets[a].get(b);
                 FTE theFTE = null;
                 PTE thePTE = null;//
@@ -219,6 +216,12 @@ public class FileManager {
                             + theFTE.workLoc + ","
                             + theFTE.deductRate + ","
                             + theFTE.yearlySalary + "\n");
+                    
+                    try {
+                        textFile.append(hashLine);
+                    }catch (IOException e) {
+                        System.out.println(e);
+                    }
                 }
                 
                 if (grabbed instanceof PTE) {
@@ -232,37 +235,28 @@ public class FileManager {
                                 + thePTE.hourlyWage + ","
                                 + thePTE.hoursPerWeek + ","
                                 + thePTE.weeksPerYear + "\n");
-                }
-                try {
-                    boolean errors = false;
-                    Scanner checkFile = null;
                     try {
-                        checkFile = new Scanner(new File("employee-entries.txt"));
-                    }catch (FileNotFoundException eb) {
-                        System.out.println(eb);
-                        }
-                    
-                    while (checkFile.hasNextLine()) {
-                        String dupLine = checkFile.nextLine();
-                        String[] dupArray = dupLine.split(",");
-                        String[] hashArray = hashLine.split(",");
-                        
-                        if (dupArray[1].equals(hashArray[1])) {
-                            errors = true;
-                            System.out.println("Duplicate, not appending.");
-                        }
-                        
-                    }
-                    
-                    if (errors == false) {
-                        System.out.println("Saved Employee NO. " + grabbed.employeeNum);
                         textFile.append(hashLine);
+                    }catch (IOException e) {
+                        System.out.println(e);
                     }
-                    } catch (IOException errors) {
-                        System.out.println("Error while writing to file.");
-                    }
+                    
+                }
             }
         }
+        //
+        try {
+            textFile.close();
+        }catch (IOException e) {
+            System.out.println(e);
+        }
+        try { // open new text folder, will open an existing one if already exits, or create a new one.
+            textFile = new FileWriter("employee-entries.txt", true);
+        } catch (IOException e) {
+            System.out.println("IO Exception Error while opening data file.");
+            e.printStackTrace();
+        }
+        
     }
     
     public void finish(FileManager theEnd) { // To close all potentially open text files, just in case they were never closed properly
