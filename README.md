@@ -31,6 +31,6 @@ Same as save, just closes everything after. <br/>
 
 RELOAD Button: <br/>
 Runs through the text file, any new entries will be added to the Hashtable data.<br/>
-WARNING (KNOWN ISSUE): Use of this button could potentially override data, it is recommended that the program is closed and reopened to load new data.<br/>
+Reload will also undo any changes made to Employee data in the current session.<br/>
 
 ---------- END OF DATA FILE DOCUMENTATION ---------<br/>
