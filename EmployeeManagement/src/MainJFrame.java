@@ -1,8 +1,10 @@
 
+import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -271,12 +273,21 @@ public class MainJFrame extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
+            
+            UIManager.put("nimbusBase", new Color(224, 255, 102)); // Secondary buttons
+            UIManager.put("control", new Color(235, 255, 214));  // Background Main
+            UIManager.put("nimbusBlueGrey", new Color(186, 250, 117)); // Primary Buttons
+            UIManager.put("nimbusLightBackground", new Color(255, 255, 250)); //Field Backgrounds
+            UIManager.put("nimbusDisabledText", new Color(0,0,0)); // Disabled Text
+            UIManager.put("nimbusSelectedText", new Color(85, 105, 63)); // Highlighted Text
+            
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
+            
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

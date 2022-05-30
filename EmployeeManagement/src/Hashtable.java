@@ -41,8 +41,8 @@ public class Hashtable {
 
                     EmployeeInfo reference = buckets[idTag].get(e);
                     if ((reference.employeeNum == theEmployee) && (reference != null)) { //find a matching variable
-                            System.out.println("\nRemoved "+ reference.firstName +" "+ reference.lastName + " "
-                                            + "with employee ID. " + reference.employeeNum);
+                            //System.out.println("\nRemoved "+ reference.firstName +" "+ reference.lastName + " "
+                            //                + "with employee ID. " + reference.employeeNum);
                             buckets[idTag].remove(reference);
                             arraySize --;
                             return reference;

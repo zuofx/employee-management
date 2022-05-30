@@ -46,6 +46,7 @@ public class displayJFrame extends javax.swing.JFrame {
         displayTable = new javax.swing.JTable();
         displayButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,6 +76,13 @@ public class displayJFrame extends javax.swing.JFrame {
             }
         });
 
+        updateButton.setText("UPDATE");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,6 +92,8 @@ public class displayJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(displayButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exitButton))
                     .addGroup(layout.createSequentialGroup()
@@ -103,7 +113,8 @@ public class displayJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(displayButton)
-                    .addComponent(exitButton))
+                    .addComponent(exitButton)
+                    .addComponent(updateButton))
                 .addContainerGap())
         );
 
@@ -157,6 +168,11 @@ public class displayJFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
 
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        // TODO add your handling code here:
+        displayButtonActionPerformed(evt);
+    }//GEN-LAST:event_updateButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,5 +214,6 @@ public class displayJFrame extends javax.swing.JFrame {
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
