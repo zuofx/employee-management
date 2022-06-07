@@ -10,7 +10,7 @@ public class Hashtable {
 
             arraySize = 0;
             buckets = new ArrayList[listSize]; //WARNING
-//Type safety: The expression of type ArrayList[] needs unchecked conversion to conform to ArrayList<SI>
+    //Type safety: The expression of type ArrayList[] needs unchecked conversion to conform to ArrayList<SI>
 
             for (int i = 0; i < listSize; i++) { //
                     buckets[i] = new ArrayList();  // Instantiate the ArrayList for bucket i. // WARNING:

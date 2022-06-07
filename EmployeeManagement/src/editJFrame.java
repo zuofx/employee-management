@@ -629,6 +629,7 @@ public class editJFrame extends javax.swing.JFrame {
             if (useDefault.isSelected() == true) {
                 FTE theFTE = new FTE(empNum, firstName, lastName, gender, workLoc, 0.21, salaryAnnual);
                 editHT.add(theFTE);
+                dispose();
                 
             }
             if (useCustom.isSelected() == true) {
@@ -636,6 +637,7 @@ public class editJFrame extends javax.swing.JFrame {
                 Double deductDouble = Double.parseDouble(deduct);
                 FTE theFTE = new FTE(empNum, firstName, lastName, gender, workLoc, deductDouble, salaryAnnual);
                 editHT.add(theFTE);
+                dispose();
                 
             }
 
@@ -734,6 +736,7 @@ public class editJFrame extends javax.swing.JFrame {
             if (useDefault.isSelected() == true) {
                 PTE thePTE = new PTE(empNum, firstName, lastName, gender, workLoc, 0.21, wageHours, weeksVal, yearsVal);
                 editHT.add(thePTE);
+                dispose();
                 //tFiles.writeNew(thePTE);
             }
             if (useCustom.isSelected() == true) {
@@ -741,6 +744,7 @@ public class editJFrame extends javax.swing.JFrame {
                 Double deductDouble = Double.parseDouble(deduct);
                 PTE thePTE = new PTE(empNum, firstName, lastName, gender, workLoc, deductDouble, wageHours, weeksVal, yearsVal);
                 editHT.add(thePTE);
+                dispose();
                 
                 //tFiles.writeNew(thePTE);
             }
@@ -750,7 +754,7 @@ public class editJFrame extends javax.swing.JFrame {
         // </editor-fold>
         
         //tFiles.rewrite(editHT);
-     //end of add   
+    //end of edit  
     }//GEN-LAST:event_finishAddActionPerformed
 
     private void inputFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFirstNameActionPerformed

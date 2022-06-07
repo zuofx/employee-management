@@ -574,6 +574,7 @@ public class AddJFrame extends javax.swing.JFrame {
                 FTE theFTE = new FTE(empNum, firstName, lastName, gender, workLoc, 0.21, salaryAnnual);
                 addHT.add(theFTE);
                 System.out.println("\nAdded new Full-Time employee: " + theFTE.employeeNum);
+                dispose();
             }
             if (useCustom.isSelected() == true) { // If use custom deduction rate is selected, add new FTE with user-entered deduct rate
                 String deduct = deductField.getText();
@@ -581,6 +582,7 @@ public class AddJFrame extends javax.swing.JFrame {
                 FTE theFTE = new FTE(empNum, firstName, lastName, gender, workLoc, deductDouble, salaryAnnual);
                 addHT.add(theFTE);
                 System.out.println("\nAdded new Full-Time employee: " + theFTE.employeeNum);
+                dispose();
             }
 
         } // end of full time
@@ -679,6 +681,7 @@ public class AddJFrame extends javax.swing.JFrame {
                 PTE thePTE = new PTE(empNum, firstName, lastName, gender, workLoc, 0.21, wageHours, weeksVal, yearsVal); 
                 addHT.add(thePTE);
                 System.out.println("\nAdded new Part-Time employee: " + thePTE.employeeNum);
+                dispose();
             }
             if (useCustom.isSelected() == true) { // Add new PTE with custom deduction rate.
                 String deduct = deductField.getText();
@@ -686,13 +689,15 @@ public class AddJFrame extends javax.swing.JFrame {
                 PTE thePTE = new PTE(empNum, firstName, lastName, gender, workLoc, deductDouble, wageHours, weeksVal, yearsVal);
                 addHT.add(thePTE);
                 System.out.println("\nAdded new Part-Time employee: " + thePTE.employeeNum);
+                dispose();
             }
         }// end of partime selected
 
         // End of part time stuff
         // </editor-fold>
         
-     //end of add   
+    
+        //end of add   
     }//GEN-LAST:event_finishAddActionPerformed
 
     private void inputFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFirstNameActionPerformed

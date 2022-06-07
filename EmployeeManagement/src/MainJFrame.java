@@ -66,7 +66,6 @@ public class MainJFrame extends javax.swing.JFrame {
         editFButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         reloadButton = new javax.swing.JButton();
-        addExamplesButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -114,13 +113,6 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        addExamplesButton.setText("Add Example Employees");
-        addExamplesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addExamplesButtonActionPerformed(evt);
-            }
-        });
-
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,14 +136,13 @@ public class MainJFrame extends javax.swing.JFrame {
                             .addComponent(displayButton))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(addExamplesButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                        .addComponent(reloadButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(exitButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(saveButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(reloadButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(exitButton))
+                            .addComponent(saveButton, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -172,8 +163,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exitButton)
-                    .addComponent(reloadButton)
-                    .addComponent(addExamplesButton))
+                    .addComponent(reloadButton))
                 .addContainerGap())
         );
 
@@ -220,42 +210,6 @@ public class MainJFrame extends javax.swing.JFrame {
         System.out.println("\nReloaded Employee Data.");
         
     }//GEN-LAST:event_reloadButtonActionPerformed
-
-    private void addExamplesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExamplesButtonActionPerformed
-        // TODO add your handling code here:
-        Hashtable addHT = theHT;
-        PTE thePTE2 = new PTE(791564, "Huy", "Truong", 1, "Ontario", 0.21, 14, 20, 45);
-        addHT.add(thePTE2);
-        tFiles.writeNew(thePTE2);
-        
-        thePTE2 = new PTE(433829, "James", "Surray", 1, "Ontario", 0.16, 14, 20, 45);
-        addHT.add(thePTE2);
-        tFiles.writeNew(thePTE2);
-        
-        FTE theFTE2 = new FTE(123456, "Patrick", "Li", 1, "Sauga", 0.14, 69420);
-        addHT.add(theFTE2);
-        tFiles.writeNew(theFTE2);
-        
-        theFTE2 = new FTE(583420, "Andrew", "Tolmachev", 2, "Brazil", 0.18, 58302);
-        addHT.add(theFTE2);
-        tFiles.writeNew(theFTE2);
-        
-        thePTE2 = new PTE(395732, "Richard", "Nguyen", 1, "Calgary", 0.13, 30, 20, 25);
-        addHT.add(thePTE2);
-        tFiles.writeNew(thePTE2);
-        
-        thePTE2 = new PTE(293473, "Percy", "Ranger", 1, "New Brunswick", 0.11, 45, 15, 20);
-        addHT.add(thePTE2);
-        tFiles.writeNew(thePTE2);
-        
-        theFTE2 = new FTE(104843, "Tarren", "Selvic", 1, "PEI", 0.08, 197500);
-        addHT.add(theFTE2);
-        tFiles.writeNew(theFTE2);
-        
-        theFTE2 = new FTE(238459, "Martha", "Selvic", 2, "PEI", 0.09, 197500);
-        addHT.add(theFTE2);
-        tFiles.writeNew(theFTE2);
-    }//GEN-LAST:event_addExamplesButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
@@ -310,7 +264,6 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addExamplesButton;
     private javax.swing.JButton addNewButton;
     private javax.swing.JButton displayButton;
     private javax.swing.JButton editFButton;
